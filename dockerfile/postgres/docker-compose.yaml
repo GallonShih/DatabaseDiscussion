@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: postgres_test
+    image: gallonshih/postgres:latest
+    restart: always
+    volumes:
+      - postgres_data_volume:/var/lib/postgresql/data
+    ports:
+      - "5436:5432"
+  
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
+      PGADMIN_DEFAULT_PASSWORD: 123456
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data_volume:/var/lib/pgadmin
+
+volumes:
+  postgres_data_volume:
+  pgadmin_data_volume:
